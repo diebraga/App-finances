@@ -9,25 +9,28 @@ interface TransactionModalProps {
 export const TransactionModal = (props: TransactionModalProps): JSX.Element => {
 
   return (
-    <Container>
+    <>
       <Modal
         isOpen={props.modalIsOpen}
         onRequestClose={props.closeModal}
         contentLabel="Example Modal"
+        overlayClassName="react-modal-overlay"
+        className="react-modal-content"  
       >
-
+        <Container>
         <h2>Register transaction</h2>
-        <button onClick={props.closeModal}>close</button>
-        <div>I am a modal</div>
-        <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form>
+        <>
+          <input placeholder='title' />
+          <input placeholder='amount' type='number' />
+          <input placeholder='category' />
+          <button type='submit'>
+            cadastrar
+          </button>
+
+        </>
+        </Container>
       </Modal>
-    </Container>
+    </>
   );
 };
 
