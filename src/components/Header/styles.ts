@@ -1,38 +1,30 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 export const Container = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 50px 0;
+  background: #091994;
+`;
 
-  a {
-    transition: opacity 0.2s;
+export const Content = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 2rem 1rem 12rem;
+  max-width: 1120px;
+
+  button {
+    font-size: 1rem;
+    color: #fff;
+    background: #1338bd;
+    border: 0;
+    border-radius: 0.25rem;
+    padding: 0 2rem;
+    height: 3rem;
+
+    transition: filter 0.2s;
 
     &:hover {
-      opacity: 0.7;
+      filter: brightness(0.9)
     }
   }
-`;
-
-export const Cart = styled(Link)`
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-
-  div {
-    text-align: right;
-    margin-right: 10px;
-
-    strong {
-      display: block;
-      color: #fff;
-    }
-
-    span {
-      font-size: 12px;
-      color: #999;
-    }
-  }
-`;
+`
