@@ -3,7 +3,8 @@ import Modal from 'react-modal'
 import closeSvg from '../../assets/close.svg';
 import incomeImg from '../../assets/income.svg';
 import outcomeImg from '../../assets/outcome.svg';
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
+import { api } from '../../services/api';
 
 interface TransactionModalProps {
   modalIsOpen: boolean
@@ -12,6 +13,22 @@ interface TransactionModalProps {
 
 export const TransactionModal = (props: TransactionModalProps): JSX.Element => {
   const [type, setType] = useState('deposit')
+  const [title, setTitle] = useState('')
+  const [value, setValue] = useState(0)
+  const [category, setCategory] = useState('')
+
+  function handleTransaction(event: FormEvent) {
+    event.preventDefault()
+
+    const data = {
+      type, 
+      value,
+      title,
+      category,
+    }
+
+    api.post('/transactions', data)
+  }
 
   return (
     <>
@@ -28,17 +45,24 @@ export const TransactionModal = (props: TransactionModalProps): JSX.Element => {
         <Container>
         <h2>Register transaction</h2>
         <>
-          <input placeholder='title' />
-          <input placeholder='amount' type='number' />
-          <TransactionTypeContainer>
+          <input 
+            placeholder='title'
+            value={title}
+            onChange={event => setTitle(event.target.value)} />
+          <input 
+            placeholder='amount' 
+            type='number'
+            value={value}
+            onChange={event => setValue(Number(event.target.value))} />
+          <TransactionTypeContainer onClick={handleTransaction}>
           <RadioBox
             type="button"
             onClick={() => setType('deposit')}
             isActive={type === 'deposit'}
             activeColor="green"
           >
-            <img src={incomeImg} alt="Entrada" />
-            <span>Entrada</span>
+            <img src={incomeImg} alt="income" />
+            <span>income</span>
           </RadioBox>
 
           <RadioBox
@@ -47,11 +71,14 @@ export const TransactionModal = (props: TransactionModalProps): JSX.Element => {
             isActive={type === 'withdraw'}
             activeColor="red"
           >
-            <img src={outcomeImg} alt="Saída" />
-            <span>Saída</span>
+            <img src={outcomeImg} alt="outcome" />
+            <span>outcome</span>
           </RadioBox>
           </TransactionTypeContainer>
-          <input placeholder='category' />
+          <input 
+            placeholder='category'
+            value={category}
+            onChange={event => setCategory(event.target.value)} />
           <button type='submit'>
             submit
           </button>
