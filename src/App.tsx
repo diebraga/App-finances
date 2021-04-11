@@ -5,6 +5,7 @@ import Header from './components/Header';
 import { Dashboard } from './components/Dashboard';
 import React, { useState } from 'react'
 import Modal from 'react-modal'
+import { TransactionModal } from './components/TransactionModal';
 
 Modal.setAppElement('#root')
 
@@ -23,24 +24,7 @@ const App = (): JSX.Element => {
         <GlobalStyles />
         <Header openModal={openModal} />
         <Dashboard />
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          contentLabel="Example Modal"
-        >
-
-          <h2>Register transaction</h2>
-          <button onClick={closeModal}>close</button>
-          <div>I am a modal</div>
-          <form>
-            <input />
-            <button>tab navigation</button>
-            <button>stays</button>
-            <button>inside</button>
-            <button>the modal</button>
-          </form>
-        </Modal>
-
+        <TransactionModal modalIsOpen={modalIsOpen} closeModal={closeModal}/>
         <Routes />
     </BrowserRouter>
   );
