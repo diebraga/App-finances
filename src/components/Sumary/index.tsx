@@ -22,8 +22,8 @@ export const Sumary = (): JSX.Element => {
         </header>
         <strong>- $1.0000</strong>
       </div>
-      <div>
-        <header className='highlight-background'>
+      <div style={{ background: '#82bda1', color: '#fff' }}>
+        <header>
           <p>Total</p>
           <img src={TotalImg} alt='total'/>
         </header>

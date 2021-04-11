@@ -2,7 +2,7 @@
 const Home = (): JSX.Element => {
 
   return (
-    <div>|hello</div>
+    <div></div>
   );
 };
 

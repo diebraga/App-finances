@@ -23,14 +23,5 @@ export const Container = styled.div`
       font-weight: 500;
       line-height: 3rem;
     }
-    &.highlight-background {
-      color: #ffffff;
-      background: linear-gradient(
-        to right,
-        #f28d11 0%,
-        #f7a034 51%,
-        #f28d11 100%
-      );
-    }
   }
 `;
