@@ -41,7 +41,7 @@ export const Container = styled.form`
     font-size: 1rem;
     font-weight: 600;
     color: #ffffff;
-    background: var(--orange);
+    background: var(--green);
     border: 0;
     border-radius: 0.25rem;
     transition: filter 0.2s ease-in-out;
