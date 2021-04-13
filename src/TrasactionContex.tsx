@@ -7,7 +7,7 @@ interface TrasacrionProviderProps {
 
 interface TrasacrionContextProps {
   transactions: TransactionsProps[]
-  createTransaction: (transactions: TransactionInput) => void
+  createTransaction: (transactions: TransactionInput) => Promise<void>
 }
 
 interface TransactionsProps {
@@ -31,8 +31,18 @@ export function TrasacrionProvider({ children }: TrasacrionProviderProps) {
     .then(response => setTransactions(response.data.transactions))
   }, [])
 
-  function createTransaction(transactions: TransactionInput) {
-    api.post('/transactions', transactions)
+  async function createTransaction(TransactionInput: TransactionInput) {
+  const response = await api.post('/transactions', {
+    ...TransactionInput,
+    createdAt: new Date(),
+  })
+
+    const { transaction } = response.data
+
+    setTransactions([
+      ...transactions,
+      transaction,
+    ])
   }
 
   return(

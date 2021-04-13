@@ -20,15 +20,20 @@ export const TransactionModal = (props: TransactionModalProps): JSX.Element => {
   const [value, setValue] = useState(0)
   const [category, setCategory] = useState('')
 
-  function handleTransaction(event: FormEvent) {
+  async function handleTransaction(event: FormEvent) {
     event.preventDefault()
 
-    createTransaction({
+    await createTransaction({
       title,
       category,
       type,
       amount: value,
     })
+    setType('deposit')
+    setTitle('')
+    setValue(0)
+    setCategory('')  
+    props.closeModal()
   }
 
   return (
