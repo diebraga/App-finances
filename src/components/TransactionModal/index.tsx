@@ -4,7 +4,6 @@ import closeSvg from '../../assets/close.svg';
 import incomeImg from '../../assets/income.svg';
 import outcomeImg from '../../assets/outcome.svg';
 import { useState, FormEvent, useContext } from 'react';
-import { api } from '../../services/api';
 import { TrasacrionContext } from '../../TrasactionContex'
 
 interface TransactionModalProps {
