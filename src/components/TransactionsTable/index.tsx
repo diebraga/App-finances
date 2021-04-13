@@ -3,7 +3,7 @@ import { Container } from './styles';
 import { TrasacrionContext } from '../../TrasactionContex'
 
 export const TransactionsTable = (): JSX.Element => {
-  const data = useContext(TrasacrionContext)
+  const { transactions } = useContext(TrasacrionContext)
   
   return (
     <Container>
@@ -18,7 +18,7 @@ export const TransactionsTable = (): JSX.Element => {
         </thead>
 
         <tbody>
-          {data.map((item) => {
+          {transactions.map((item) => {
             return (
               <tr key={item.id}>
                 <td>{item.title}</td>

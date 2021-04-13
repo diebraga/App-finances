@@ -3,8 +3,9 @@ import Modal from 'react-modal'
 import closeSvg from '../../assets/close.svg';
 import incomeImg from '../../assets/income.svg';
 import outcomeImg from '../../assets/outcome.svg';
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useContext } from 'react';
 import { api } from '../../services/api';
+import { TrasacrionContext } from '../../TrasactionContex'
 
 interface TransactionModalProps {
   modalIsOpen: boolean
@@ -12,6 +13,8 @@ interface TransactionModalProps {
 }
 
 export const TransactionModal = (props: TransactionModalProps): JSX.Element => {
+  const { createTransaction } = useContext(TrasacrionContext)
+
   const [type, setType] = useState('deposit')
   const [title, setTitle] = useState('')
   const [value, setValue] = useState(0)
@@ -20,14 +23,12 @@ export const TransactionModal = (props: TransactionModalProps): JSX.Element => {
   function handleTransaction(event: FormEvent) {
     event.preventDefault()
 
-    const data = {
-      type, 
-      value,
+    createTransaction({
       title,
       category,
-    }
-
-    api.post('/transactions', data)
+      type,
+      amount: value,
+    })
   }
 
   return (
@@ -54,7 +55,7 @@ export const TransactionModal = (props: TransactionModalProps): JSX.Element => {
             type='number'
             value={value}
             onChange={event => setValue(Number(event.target.value))} />
-          <TransactionTypeContainer onClick={handleTransaction}>
+          <TransactionTypeContainer>
           <RadioBox
             type="button"
             onClick={() => setType('deposit')}
@@ -79,7 +80,7 @@ export const TransactionModal = (props: TransactionModalProps): JSX.Element => {
             placeholder='category'
             value={category}
             onChange={event => setCategory(event.target.value)} />
-          <button type='submit'>
+          <button type='submit' onClick={handleTransaction}>
             submit
           </button>
 

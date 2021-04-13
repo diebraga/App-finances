@@ -1,8 +1,13 @@
 import { createContext, ReactNode, useEffect, useState } from 'react'
 import { api } from '../src/services/api';
 
-interface TrasacrionContextProps {
+interface TrasacrionProviderProps {
   children: ReactNode
+}
+
+interface TrasacrionContextProps {
+  transactions: TransactionsProps[]
+  createTransaction: (transactions: TransactionInput) => void
 }
 
 interface TransactionsProps {
@@ -14,9 +19,11 @@ interface TransactionsProps {
   type: string
 }
 
-export const TrasacrionContext = createContext<any[]>([])
+type TransactionInput = Omit<TransactionsProps, 'id' | 'createdAt'>
 
-export function TrasacrionProvider({ children }: TrasacrionContextProps) {
+export const TrasacrionContext = createContext({} as TrasacrionContextProps)
+
+export function TrasacrionProvider({ children }: TrasacrionProviderProps) {
   const [transactions, setTransactions] = useState<TransactionsProps[]>([])
 
   useEffect(() => {
@@ -24,8 +31,15 @@ export function TrasacrionProvider({ children }: TrasacrionContextProps) {
     .then(response => setTransactions(response.data.transactions))
   }, [])
 
+  function createTransaction(transactions: TransactionInput) {
+    api.post('/transactions', transactions)
+  }
+
   return(
-    <TrasacrionContext.Provider value={transactions}>
+    <TrasacrionContext.Provider value={{
+      transactions,
+      createTransaction
+    }}>
       {children}
     </TrasacrionContext.Provider>
   )
