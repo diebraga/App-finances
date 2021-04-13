@@ -1,23 +1,10 @@
+import { useContext } from 'react'
 import { Container } from './styles';
-import { useEffect, useState } from 'react'
-import { api } from '../../services/api';
-
-interface TransactionsProps {
-  id: number
-  title: string
-  amount: number
-  category: string
-  createdAt: string
-  type: string
-}
+import { TrasacrionContext } from '../../TrasactionContex'
 
 export const TransactionsTable = (): JSX.Element => {
-  const [transactions, setTransactions] = useState<TransactionsProps[]>([])
-
-  useEffect(() => {
-    api.get('transactions')
-    .then(response => setTransactions(response.data.transactions))
-  }, [])
+  const data = useContext(TrasacrionContext)
+  
   return (
     <Container>
       <table>
@@ -31,7 +18,7 @@ export const TransactionsTable = (): JSX.Element => {
         </thead>
 
         <tbody>
-          {transactions.map((item) => {
+          {data.map((item) => {
             return (
               <tr key={item.id}>
                 <td>{item.title}</td>

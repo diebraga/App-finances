@@ -1,3 +1,4 @@
+import { useContext } from 'react'
 import IncomeImg from '../../assets/income.svg' 
 import OutCome from '../../assets/outcome.svg' 
 import TotalImg from '../../assets/total.svg' 
@@ -5,7 +6,6 @@ import TotalImg from '../../assets/total.svg'
 import { Container } from './styles';
 
 export const Sumary = (): JSX.Element => {
-
   return (
     <Container>
       <div>

@@ -1,10 +1,10 @@
 import GlobalStyles from './styles/global';
 import Header from './components/Header';
 import { Dashboard } from './components/Dashboard';
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Modal from 'react-modal'
 import { TransactionModal } from './components/TransactionModal';
-
+import { TrasacrionProvider } from './TrasactionContex'
 Modal.setAppElement('#root')
 
 const App = (): JSX.Element => {
@@ -18,12 +18,12 @@ const App = (): JSX.Element => {
   }
 
   return (
-    <>
-        <GlobalStyles />
-        <Header openModal={openModal} />
-        <Dashboard />
-        <TransactionModal modalIsOpen={modalIsOpen} closeModal={closeModal}/>
-    </>
+    <TrasacrionProvider>
+      <GlobalStyles />
+      <Header openModal={openModal} />
+      <Dashboard />
+      <TransactionModal modalIsOpen={modalIsOpen} closeModal={closeModal}/>
+    </TrasacrionProvider>
   );
 };
 
