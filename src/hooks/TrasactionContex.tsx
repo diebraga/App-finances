@@ -1,5 +1,5 @@
-import { createContext, ReactNode, useEffect, useState } from 'react'
-import { api } from '../src/services/api';
+import { createContext, ReactNode, useEffect, useState, useContext } from 'react'
+import { api } from '../services/api';
 
 interface TrasacrionProviderProps {
   children: ReactNode
@@ -53,4 +53,10 @@ export function TrasacrionProvider({ children }: TrasacrionProviderProps) {
       {children}
     </TrasacrionContext.Provider>
   )
+}
+
+export function useTransactions() {
+  const context = useContext(TrasacrionContext)
+
+  return context
 }

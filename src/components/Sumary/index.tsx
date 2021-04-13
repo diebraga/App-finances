@@ -1,13 +1,12 @@
-import { useContext } from 'react'
 import IncomeImg from '../../assets/income.svg' 
 import OutCome from '../../assets/outcome.svg' 
 import TotalImg from '../../assets/total.svg' 
-import { TrasacrionContext } from '../../TrasactionContex'
+import { useTransactions } from '../../hooks/TrasactionContex'
 
 import { Container } from './styles';
 
 export const Sumary = (): JSX.Element => {
-  const { transactions } = useContext(TrasacrionContext)
+  const { transactions } = useTransactions()
 
   const summary = transactions.reduce((acc, transaction) => {
     if (transaction.type === 'deposit') {

@@ -1,9 +1,8 @@
-import { useContext } from 'react'
 import { Container } from './styles';
-import { TrasacrionContext } from '../../TrasactionContex'
+import { useTransactions } from '../../hooks/TrasactionContex'
 
 export const TransactionsTable = (): JSX.Element => {
-  const { transactions } = useContext(TrasacrionContext)
+  const { transactions } = useTransactions()
   
   return (
     <Container>

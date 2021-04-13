@@ -4,7 +4,7 @@ import { Dashboard } from './components/Dashboard';
 import { useState } from 'react'
 import Modal from 'react-modal'
 import { TransactionModal } from './components/TransactionModal';
-import { TrasacrionProvider } from './TrasactionContex'
+import { TrasacrionProvider } from './hooks/TrasactionContex'
 Modal.setAppElement('#root')
 
 const App = (): JSX.Element => {

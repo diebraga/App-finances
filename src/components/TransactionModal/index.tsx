@@ -3,8 +3,8 @@ import Modal from 'react-modal'
 import closeSvg from '../../assets/close.svg';
 import incomeImg from '../../assets/income.svg';
 import outcomeImg from '../../assets/outcome.svg';
-import { useState, FormEvent, useContext } from 'react';
-import { TrasacrionContext } from '../../TrasactionContex'
+import { useState, FormEvent } from 'react';
+import { useTransactions } from '../../hooks/TrasactionContex'
 
 interface TransactionModalProps {
   modalIsOpen: boolean
@@ -12,7 +12,7 @@ interface TransactionModalProps {
 }
 
 export const TransactionModal = (props: TransactionModalProps): JSX.Element => {
-  const { createTransaction } = useContext(TrasacrionContext)
+  const { createTransaction } = useTransactions()
 
   const [type, setType] = useState('deposit')
   const [title, setTitle] = useState('')
